@@ -88,3 +88,21 @@ body {
     font-size: 15px;
     margin-bottom: 5px;
 }
+
+@media (max-width: 900px) {
+    .wrapper {
+        width: 50%;
+    }
+}
+
+@media (max-width: 600px) {
+    .wrapper {
+        width: 70%;
+    }
+}
+
+@media (max-width: 400px) {
+    .wrapper {
+        width: 80%;
+    }
+}
