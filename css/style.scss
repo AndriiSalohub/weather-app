@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@400;700&display=swap");
+
 * {
     box-sizing: border-box;
 }
@@ -19,5 +21,39 @@ body {
     }
     100% {
         background-position: 0 50%;
+    }
+}
+
+.wrapper {
+    background-color: #000000a5;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    width: 30vw;
+    height: 40vh;
+    border-radius: 24px;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    font-family: "Lato", sans-serif;
+    &__input {
+        background-color: #7c7c7c19;
+        padding: 10px;
+        width: 80%;
+        border-radius: 12px;
+        color: white;
+        &::placeholder {
+            color: grey;
+        }
+    }
+    &__button {
+        background-color: #7c7c7c19;
+        padding: 10px;
+        border-radius: 50%;
+        margin-left: 10px;
     }
 }
