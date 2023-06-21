@@ -82,6 +82,11 @@ body {
             font-size: 14px;
         }
     }
+    &__warn {
+        color: red;
+        text-align: center;
+        font-size: 25px;
+    }
 }
 
 .weather-info {
