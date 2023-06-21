@@ -84,6 +84,11 @@ body {
 .weather-information__weather-description {
   font-size: 14px;
 }
+.weather-information__warn {
+  color: red;
+  text-align: center;
+  font-size: 25px;
+}
 
 .weather-info {
   font-size: 15px;

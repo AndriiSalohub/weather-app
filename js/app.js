@@ -5,13 +5,14 @@ const searchInput = document.querySelector(".search__input");
 const searchBtn = document.querySelector(".search__button");
 
 const displayData = (data) => {
-    const { name } = data;
-    const { description, icon } = data.weather[0];
-    const { temp, humidity } = data.main;
-    const { speed } = data.wind;
+    if (data.cod !== "404") {
+        const { name } = data;
+        const { description, icon } = data.weather[0];
+        const { temp, humidity } = data.main;
+        const { speed } = data.wind;
 
-    wrapper.style.height = "40%";
-    weatherInformation.innerHTML = `
+        wrapper.style.height = "40%";
+        weatherInformation.innerHTML = `
     <h2 class="weather-information__title">
         Weather in ${name}
     </h2>
@@ -28,6 +29,11 @@ const displayData = (data) => {
     <p class="weather-information__humidity weather-info">Humidity: ${humidity}%</p>
     <p class="weather-information__wind-speed weather-info">Wind Speed: ${speed} km/h</p>
     `;
+    } else {
+        weatherInformation.innerHTML = `
+            <p class="weather-information__warn">You entered a non-existent city</p>
+        `;
+    }
 };
 
 const fetchData = (city, apiKey) => {
