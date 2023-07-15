@@ -11,7 +11,6 @@ const displayData = (data) => {
         const { temp, humidity } = data.main;
         const { speed } = data.wind;
 
-        wrapper.style.height = "40%";
         weatherInformation.innerHTML = `
     <h2 class="weather-information__title">
         Weather in ${name}
@@ -30,7 +29,6 @@ const displayData = (data) => {
     <p class="weather-information__wind-speed weather-info">Wind Speed: ${speed} km/h</p>
     `;
     } else {
-        wrapper.style.height = "20%";
         weatherInformation.innerHTML = `
             <p class="weather-information__warn">You entered a non-existent city</p>
         `;
