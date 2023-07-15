@@ -38,6 +38,7 @@ body {
 .search {
     display: flex;
     align-items: center;
+    justify-content: center;
     font-family: "Lato", sans-serif;
     &__input {
         background-color: #7c7c7c19;
@@ -61,6 +62,7 @@ body {
     margin-top: 20px;
     color: #fff;
     font-family: "Lato", sans-serif;
+    padding-left: 0px;
     &__title {
         font-weight: 700;
         font-size: 25px;
@@ -69,6 +71,9 @@ body {
     &__temperature {
         font-size: 27px;
         margin-bottom: 15px;
+    }
+    &__wind-speed {
+        margin-bottom: 10px;
     }
     &__weather {
         display: flex;
@@ -92,6 +97,12 @@ body {
 .weather-info {
     font-size: 15px;
     margin-bottom: 5px;
+}
+
+@media (max-width: 2561px) {
+    .wrapper {
+        width: 25%;
+    }
 }
 
 @media (max-width: 900px) {
