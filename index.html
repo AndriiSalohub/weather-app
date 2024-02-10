@@ -3,10 +3,31 @@
     <head>
         <meta charset="UTF-8" />
         <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <link rel="stylesheet" href="src/scss/reset.scss" />
+        <link rel="stylesheet" href="src/scss/style.scss" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Weather Application</title>
     </head>
     <body>
+        <header class="header">
+            <img
+                src="https://openweathermap.org/themes/openweathermap/assets/img/logo_white_cropped.png"
+                alt="openweather logo"
+                class="header__logo-img"
+            />
+            <form action="" class="header__search-form">
+                <input
+                    type="text"
+                    class="header__search-input"
+                    placeholder="Enter a city"
+                />
+                <button class="header__search-btn">Search</button>
+            </form>
+            <button class="header__temperature-variant">
+                <span id="celsius">°C</span> /
+                <span id="fahrenheit">°F</span>
+            </button>
+        </header>
         <script type="module" src="/src/ts/app.ts"></script>
     </body>
 </html>

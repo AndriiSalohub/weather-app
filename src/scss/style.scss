@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap");
+
+$main-background: #343a3f;
+$font-family: "Roboto", sans-serif;
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $font-family;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $main-background;
+    padding: 20px 40px;
+
+    &__logo-img {
+        width: 100px;
+    }
+
+    &__search {
+        &-form {
+            width: 60vw;
+            margin: 0px 40px;
+            position: relative;
+        }
+        &-input {
+            width: 100%;
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: none;
+        }
+        &-btn {
+            cursor: pointer;
+            border: none;
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            padding: 0px 20px;
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+            background-color: #ea6f4b;
+            color: white;
+        }
+    }
+
+    &__temperature-variant {
+        padding: 10px 40px;
+        border-radius: 6px;
+        border: none;
+        background-color: white;
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 1024px) {
+    .header {
+        padding: 20px;
+
+        &__search {
+            &-form {
+                margin: 0px 20px;
+            }
+        }
+
+        &__temperature-variant {
+            padding: 10px 15px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        &__logo-img {
+            width: 80px;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .header {
+        flex-direction: column;
+        justify-content: center;
+        padding: 20px 40px;
+
+        &__logo-img {
+            width: 100px;
+            margin-bottom: 10px;
+        }
+
+        &__search {
+            &-form {
+                margin-bottom: 10px;
+                width: 100%;
+            }
+            &-input {
+                padding: 10px 20px;
+            }
+        }
+
+        &__temperature-variant {
+            width: 100%;
+        }
+    }
+}
