@@ -64,6 +64,76 @@ body {
     }
 }
 
+.weather {
+    margin-top: 20px;
+
+    &__day-forecast {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    &__current {
+        max-width: 33%;
+        flex: 0 0 33%;
+        text-align: center;
+
+        &-city {
+            font-size: 40px;
+            margin-bottom: 5px;
+        }
+
+        &-weather {
+            font-size: 25px;
+        }
+
+        &-temperature {
+            font-size: 70px;
+            margin: 10px 0px;
+        }
+
+        &-max-min-temperature {
+            font-size: 18px;
+        }
+    }
+
+    &__hourly {
+        &-forecast {
+            display: flex;
+            max-width: 66%;
+            overflow: auto;
+            overflow-y: scroll;
+            border-top: 1px solid #eef1f3;
+            border-bottom: 1px solid #eef1f3;
+            padding: 10px 0px;
+        }
+
+        &-now {
+            margin-right: 1vw;
+        }
+
+        &-title {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        &-humidity {
+            text-align: center;
+            color: #017bfe;
+        }
+
+        &-image {
+            width: 100px;
+        }
+
+        &-temperature {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+    }
+}
+
 .footer {
     margin-top: auto;
     padding: 20px;
@@ -92,6 +162,21 @@ body {
     .header {
         &__logo-img {
             width: 80px;
+        }
+    }
+
+    .weather {
+        &__day-forecast {
+            flex-direction: column;
+        }
+
+        &__current {
+            max-width: 100%;
+            margin-bottom: 20px;
+        }
+
+        &__hourly-forecast {
+            max-width: 95%;
         }
     }
 
