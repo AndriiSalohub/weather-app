@@ -98,24 +98,26 @@ body {
         }
     }
 
-    &__hourly {
-        &-forecast {
-            display: flex;
-            max-width: 66%;
-            overflow: auto;
-            overflow-y: scroll;
-            border-top: 1px solid #eef1f3;
-            border-bottom: 1px solid #eef1f3;
-            padding: 10px 0px;
-        }
+    &__interval-forecast {
+        display: flex;
+        max-width: 66%;
+        overflow: auto;
+        overflow-y: scroll;
+        border-top: 1px solid #eef1f3;
+        border-bottom: 1px solid #eef1f3;
+        padding: 10px 0px;
 
-        &-now {
+        & li {
             margin-right: 1vw;
         }
 
         &-title {
             text-align: center;
             margin-bottom: 10px;
+
+            &_now {
+                font-weight: bold;
+            }
         }
 
         &-humidity {

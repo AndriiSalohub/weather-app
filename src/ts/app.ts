@@ -1,7 +1,8 @@
-import { Weather } from "./types";
+import { Weather, WeatherData } from "./types";
 
 const apiKey = "5c5fc4bb391bf0a314053ba9c7aa8cd3";
 const currentWeather = document.querySelector(".weather__current");
+const hourlyWeather = document.querySelector(".weather__interval-forecast");
 
 const displayCurrentWeather = (data: Weather, city: string) => {
     const { temp, temp_max, temp_min } = data.main;
@@ -17,6 +18,32 @@ const displayCurrentWeather = (data: Weather, city: string) => {
     }
 };
 
+const displayHourlyForecast = (data: WeatherData) => {
+    for (let i = 0; i <= 8; i++) {
+        const time = data.list[i].dt_txt.split(" ")[1].slice(0, 5);
+        const { temp, humidity } = data.list[i].main;
+        const { icon } = data.list[i].weather[0];
+        console.log(data.list[i]);
+
+        const li = document.createElement("li");
+        li.innerHTML = `
+            <h3 class="weather__interval-forecast-title ${
+                i === 0 ? "weather__interval-forecast-title_now" : ""
+            }">${time}</h3>
+            <p class="weather__interval-forecast-humidity">${humidity}%</p>
+            <img
+                src="https://openweathermap.org/img/wn/${icon}@4x.png"
+                alt="weather  image"
+                class="weather__interval-forecast-image"
+            />
+            <p class="weather__interval-forecast-temperature">${(
+                temp - 273
+            ).toFixed(0)}°</p>
+        `;
+        hourlyWeather?.append(li);
+    }
+};
+
 const fetchData = (city: string, apiKey: string) => {
     fetch(
         `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`
@@ -24,6 +51,7 @@ const fetchData = (city: string, apiKey: string) => {
         .then((res) => res.json())
         .then((data) => {
             displayCurrentWeather(data.list[0], city);
+            displayHourlyForecast(data);
         });
 };
 
