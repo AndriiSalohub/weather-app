@@ -55,12 +55,15 @@ body {
         }
     }
 
-    &__temperature-variant {
+    &__temperature-scale {
         padding: 10px 40px;
         border-radius: 6px;
         border: none;
         background-color: white;
         cursor: pointer;
+        &_current {
+            font-weight: bold;
+        }
     }
 }
 
@@ -154,7 +157,7 @@ body {
             }
         }
 
-        &__temperature-variant {
+        &__temperature-scale {
             padding: 10px 15px;
         }
     }
@@ -208,7 +211,7 @@ body {
             }
         }
 
-        &__temperature-variant {
+        &__temperature-scale {
             width: 100%;
         }
     }
