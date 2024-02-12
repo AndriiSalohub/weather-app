@@ -1,30 +1,22 @@
-export interface ICurrentWeather {
-    coord: Coord;
-    weather: Weather[];
-    base: string;
-    main: Main;
-    visibility: number;
-    wind: Wind;
-    rain: Rain;
-    clouds: Clouds;
-    dt: number;
-    sys: Sys;
-    timezone: number;
-    id: number;
-    name: string;
-    cod: number;
-}
-
-export interface Coord {
-    lon: number;
-    lat: number;
+export interface WeatherData {
+    cod: string;
+    message: number;
+    cnt: number;
+    list: Weather[];
+    city: City;
 }
 
 export interface Weather {
-    id: number;
-    main: string;
-    description: string;
-    icon: string;
+    dt: number;
+    main: Main;
+    weather: WeatherDescription[]; // Renamed from Weather
+    clouds: Clouds;
+    wind: Wind;
+    visibility: number;
+    pop: number;
+    rain?: Rain;
+    sys: Sys;
+    dt_txt: string;
 }
 
 export interface Main {
@@ -33,9 +25,22 @@ export interface Main {
     temp_min: number;
     temp_max: number;
     pressure: number;
-    humidity: number;
     sea_level: number;
     grnd_level: number;
+    humidity: number;
+    temp_kf: number;
+}
+
+export interface WeatherDescription {
+    // Renamed from Weather
+    id: number;
+    main: string;
+    description: string;
+    icon: string;
+}
+
+export interface Clouds {
+    all: number;
 }
 
 export interface Wind {
@@ -45,15 +50,25 @@ export interface Wind {
 }
 
 export interface Rain {
-    "1h": number;
-}
-
-export interface Clouds {
-    all: number;
+    "3h": number;
 }
 
 export interface Sys {
+    pod: string;
+}
+
+export interface City {
+    id: number;
+    name: string;
+    coord: Coord;
     country: string;
+    population: number;
+    timezone: number;
     sunrise: number;
     sunset: number;
+}
+
+export interface Coord {
+    lat: number;
+    lon: number;
 }

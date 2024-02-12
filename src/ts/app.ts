@@ -1,15 +1,14 @@
-import { ICurrentWeather } from "./types";
+import { Weather } from "./types";
 
 const apiKey = "5c5fc4bb391bf0a314053ba9c7aa8cd3";
 const currentWeather = document.querySelector(".weather__current");
 
-const displayCurrentWeather = (data: ICurrentWeather) => {
-    const { name } = data;
+const displayCurrentWeather = (data: Weather, city: string) => {
     const { temp, temp_max, temp_min } = data.main;
     const weather = data.weather[0].main;
 
     if (currentWeather) {
-        currentWeather.innerHTML = `<h2 class="weather__current-city">${name}</h2>
+        currentWeather.innerHTML = `<h2 class="weather__current-city">${city}</h2>
         <h3 class="weather__current-weather">${weather}</h3>
         <p class="weather__current-temperature">${(temp - 273).toFixed(0)}°</p>
         <p class="weather__current-max-min-temperature">
@@ -20,10 +19,12 @@ const displayCurrentWeather = (data: ICurrentWeather) => {
 
 const fetchData = (city: string, apiKey: string) => {
     fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`
     )
         .then((res) => res.json())
-        .then((data) => displayCurrentWeather(data));
+        .then((data) => {
+            displayCurrentWeather(data.list[0], city);
+        });
 };
 
 fetchData("Kharkiv", apiKey);
