@@ -13,6 +13,8 @@ let searchTerm: string = "Kharkiv";
 const celsiusScale = document.querySelector("#celsius");
 const fahrenheitScale = document.querySelector("#fahrenheit");
 
+const loader = document.querySelector(".loader") as HTMLDivElement;
+
 const displayCurrentWeather = (data: Weather, city: string) => {
     const { temp, temp_max, temp_min } = data.main;
     const weather = data.weather[0].main;
@@ -81,6 +83,8 @@ const fetchData = (city: string, apiKey: string) => {
         .then((data) => {
             displayCurrentWeather(data.list[0], city);
             displayHourlyForecast(data);
+
+            loader.style.display = "none";
 
             if (searchInput instanceof HTMLInputElement) {
                 searchInput.value = "";
