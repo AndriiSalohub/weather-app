@@ -2,7 +2,7 @@ import { Weather, WeatherData } from "./types";
 
 const apiKey: string = "5c5fc4bb391bf0a314053ba9c7aa8cd3";
 let currentTemperatureScale: "celsius" | "fahrenheit" = "celsius";
-let searchTerm: string = "Kharkiv";
+let searchTerm: string = localStorage.getItem("city") || "Kharkiv";
 
 const currentWeather = document.querySelector(".weather__current");
 const intervalWeather = document.querySelector(".weather__interval-forecast");
@@ -105,6 +105,7 @@ searchInput?.addEventListener("input", (e: Event) => {
 searchInput?.addEventListener("keydown", (e) => {
     if ((e as KeyboardEvent).key === "Enter") {
         e.preventDefault();
+        localStorage.setItem("city", searchTerm);
         fetchData(searchTerm, apiKey);
     }
 });
@@ -113,6 +114,7 @@ searchBtn?.addEventListener("click", (e: Event) => {
     e.preventDefault();
     fetchData(searchTerm, apiKey);
 });
+
 celsiusScale?.addEventListener("click", () => {
     if (currentTemperatureScale !== "celsius") {
         currentTemperatureScale = "celsius";
@@ -135,4 +137,4 @@ function updateWeatherDisplay() {
     fetchData(searchTerm, apiKey);
 }
 
-fetchData("Kharkiv", apiKey);
+fetchData(searchTerm, apiKey);
