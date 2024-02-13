@@ -2,18 +2,18 @@ import { Weather, WeatherData } from "./types";
 
 const apiKey: string = "5c5fc4bb391bf0a314053ba9c7aa8cd3";
 let currentTemperatureScale: "celsius" | "fahrenheit" = "celsius";
+let searchTerm: string = "Kharkiv";
 
 const currentWeather = document.querySelector(".weather__current");
 const intervalWeather = document.querySelector(".weather__interval-forecast");
-
 const searchInput = document.querySelector(".header__search-input");
 const searchBtn = document.querySelector(".header__search-btn");
-let searchTerm: string = "Kharkiv";
-
 const celsiusScale = document.querySelector("#celsius");
 const fahrenheitScale = document.querySelector("#fahrenheit");
-
 const loader = document.querySelector(".loader") as HTMLDivElement;
+const todayForecastDescription = document.querySelector(
+    ".weather__description"
+) as HTMLParagraphElement;
 
 const displayCurrentWeather = (data: Weather, city: string) => {
     const { temp, temp_max, temp_min } = data.main;
@@ -30,7 +30,7 @@ const displayCurrentWeather = (data: Weather, city: string) => {
     }
 
     if (currentWeather) {
-        currentWeather.innerHTML = `<h2 class="weather__current-city">${city}</h2>
+        currentWeather.innerHTML = `<h1 class="weather__current-city">${city}</h1>
         <h3 class="weather__current-weather">${weather}</h3>
         <p class="weather__current-temperature">${temperatureInCurrentScale.toFixed(
             0
@@ -41,6 +41,10 @@ const displayCurrentWeather = (data: Weather, city: string) => {
             )}° L:${minTemperatureScale.toFixed(0)}°
         </p>`;
     }
+
+    todayForecastDescription.textContent = `Today: ${weather?.toLowerCase()}. The high will be ${maxTemperatureScale.toFixed(
+        0
+    )}°. The low tonight will be ${minTemperatureScale.toFixed(0)}°.`;
 };
 
 const displayHourlyForecast = (data: WeatherData) => {
@@ -92,8 +96,6 @@ const fetchData = (city: string, apiKey: string) => {
         });
 };
 
-fetchData("Kharkiv", apiKey);
-
 searchInput?.addEventListener("input", (e: Event) => {
     if (e.target instanceof HTMLInputElement) {
         searchTerm = e.target.value;
@@ -132,3 +134,5 @@ fahrenheitScale?.addEventListener("click", () => {
 function updateWeatherDisplay() {
     fetchData(searchTerm, apiKey);
 }
+
+fetchData("Kharkiv", apiKey);
