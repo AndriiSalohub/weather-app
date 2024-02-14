@@ -6,6 +6,7 @@ import {
 
 const searchInput = document.querySelector(".header__search-input");
 const loader = document.querySelector(".loader") as HTMLDivElement;
+const weather = document.querySelector(".weather") as HTMLDivElement;
 
 export const fetchData = (city: string, apiKey: string) => {
     fetch(
@@ -18,6 +19,7 @@ export const fetchData = (city: string, apiKey: string) => {
             displayWeatherInfo(data.list[0]);
 
             loader.style.display = "none";
+            weather.style.display = "block";
 
             if (searchInput instanceof HTMLInputElement) {
                 searchInput.value = "";

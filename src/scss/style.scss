@@ -68,6 +68,7 @@ body {
 }
 
 .weather {
+    display: none;
     margin-top: 20px;
 
     &__day-forecast {
@@ -173,7 +174,7 @@ body {
 
 .loader {
     display: block;
-    margin: 0 auto;
+    margin: 40px auto;
     border: 4px solid rgba(0, 0, 0, 0.1);
     border-left: 4px solid #333;
     border-radius: 50%;
