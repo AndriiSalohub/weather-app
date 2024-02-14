@@ -14,8 +14,27 @@ const loader = document.querySelector(".loader") as HTMLDivElement;
 const todayForecastDescription = document.querySelector(
     ".weather__description"
 ) as HTMLParagraphElement;
+const humidityInfo = document.querySelector(
+    "#humidity"
+) as HTMLParagraphElement;
+const windSpeedInfo = document.querySelector(
+    "#wind-speed"
+) as HTMLParagraphElement;
+const pressureInfo = document.querySelector(
+    "#pressure"
+) as HTMLParagraphElement;
+const windGustInfo = document.querySelector(
+    "#wind-gust"
+) as HTMLParagraphElement;
+const seaLvlInfo = document.querySelector("#sea-lvl") as HTMLParagraphElement;
+const feelsLikeInfo = document.querySelector(
+    "#feels-like"
+) as HTMLParagraphElement;
+
+console.log();
 
 const displayCurrentWeather = (data: Weather, city: string) => {
+    console.log(data);
     const { temp, temp_max, temp_min } = data.main;
     const weather = data.weather[0].main;
 
@@ -79,6 +98,22 @@ const displayHourlyForecast = (data: WeatherData) => {
     }
 };
 
+const displayWeatherInfo = (data: Weather) => {
+    console.log(data.wind);
+    const { pressure, humidity, sea_level, feels_like } = data.main;
+    const { gust, speed } = data.wind;
+    humidityInfo.textContent = `${humidity}%`;
+    windSpeedInfo.textContent = `${speed} km/h`;
+    pressureInfo.textContent = `${pressure} hPa`;
+    windGustInfo.textContent = `${gust} mph`;
+    feelsLikeInfo.textContent = `${
+        currentTemperatureScale === "celsius"
+            ? (feels_like - 273).toFixed(0) + "°C"
+            : (((feels_like - 273) * 9) / 5 + 32).toFixed(0) + "°F"
+    }`;
+    seaLvlInfo.textContent = `${sea_level} m`;
+};
+
 const fetchData = (city: string, apiKey: string) => {
     fetch(
         `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`
@@ -87,6 +122,7 @@ const fetchData = (city: string, apiKey: string) => {
         .then((data) => {
             displayCurrentWeather(data.list[0], city);
             displayHourlyForecast(data);
+            displayWeatherInfo(data.list[0]);
 
             loader.style.display = "none";
 
