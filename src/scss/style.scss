@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap");
 
 $main-background: #343a3f;
+$border: 1px solid #eef1f3;
 $font-family: "Roboto", sans-serif;
 
 * {
@@ -33,6 +34,7 @@ body {
             margin: 0px 40px;
             position: relative;
         }
+
         &-input {
             display: block;
             flex: 1 1 auto;
@@ -40,6 +42,7 @@ body {
             border-radius: 6px;
             border: none;
         }
+
         &-btn {
             cursor: pointer;
             border: none;
@@ -61,6 +64,7 @@ body {
         border: none;
         background-color: white;
         cursor: pointer;
+
         &_current {
             font-weight: bold;
         }
@@ -107,8 +111,8 @@ body {
         max-width: 66%;
         overflow: auto;
         overflow-y: scroll;
-        border-top: 1px solid #eef1f3;
-        border-bottom: 1px solid #eef1f3;
+        border-top: $border;
+        border-bottom: $border;
         padding: 10px 0px;
 
         & li {
@@ -143,23 +147,79 @@ body {
         text-align: center;
         margin: 40px 0px;
     }
+
     &__info {
         background-color: $main-background;
         padding: 50px 20px;
         margin-bottom: 50px;
+
         &-list {
             display: grid;
             grid-gap: 40px;
             grid-template-columns: repeat(3, 1fr);
             text-align: center;
         }
+
         &-title {
             margin-bottom: 5px;
             color: #6c757d;
         }
+
         &-value {
             color: white;
             font-size: 20px;
+        }
+    }
+
+    &__week-forecast {
+        &-list {
+            padding: 0px 60px;
+            &-item {
+                display: grid;
+                grid-template-columns: 4fr 1fr 1fr 1.5fr;
+                align-items: center;
+                grid-gap: 20px;
+                padding-bottom: 5px;
+                border-bottom: $border;
+                &_titles {
+                    color: #6c757d;
+                }
+            }
+        }
+
+        &-pressure-title {
+            text-align: center;
+        }
+
+        &-humidity-title {
+            text-align: center;
+        }
+
+        &-temperature-title {
+            text-align: end;
+        }
+
+        &-day-info {
+            display: grid;
+            align-items: center;
+            grid-auto-flow: column;
+        }
+
+        &-pressure {
+            text-align: center;
+        }
+
+        &-humidity {
+            text-align: center;
+        }
+
+        &-temperature {
+            text-align: right;
+        }
+
+        &-image {
+            width: 60px;
+            justify-self: center;
         }
     }
 }
@@ -188,6 +248,7 @@ body {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
@@ -252,6 +313,7 @@ body {
                 margin-bottom: 10px;
                 width: 100%;
             }
+
             &-input {
                 padding: 10px 20px;
             }
@@ -267,9 +329,11 @@ body {
     .weather {
         &__info {
             padding: 20px 10px;
+
             &-title {
                 font-size: 14px;
             }
+
             &-value {
                 font-size: 16px;
             }

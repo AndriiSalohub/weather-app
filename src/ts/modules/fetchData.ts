@@ -2,6 +2,7 @@ import {
     displayCurrentWeather,
     displayHourlyForecast,
     displayWeatherInfo,
+    displayWeekWeather,
 } from "./weatherDisplay";
 
 const searchInput = document.querySelector(".header__search-input");
@@ -14,9 +15,11 @@ export const fetchData = (city: string, apiKey: string) => {
     )
         .then((res) => res.json())
         .then((data) => {
+            console.log(data.list[0]);
             displayCurrentWeather(data.list[0], city);
             displayHourlyForecast(data);
             displayWeatherInfo(data.list[0]);
+            displayWeekWeather(data);
 
             loader.style.display = "none";
             weather.style.display = "block";

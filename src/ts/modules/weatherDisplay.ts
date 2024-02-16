@@ -3,6 +3,8 @@ import { Weather, WeatherData } from "./types";
 
 const currentWeather = document.querySelector(".weather__current");
 const intervalWeather = document.querySelector(".weather__interval-forecast");
+const weekWeather = document.querySelector(".weather__week-forecast-list");
+
 const todayForecastDescription = document.querySelector(
     ".weather__description"
 ) as HTMLParagraphElement;
@@ -100,4 +102,83 @@ export const displayWeatherInfo = (data: Weather) => {
             : (((feels_like - 273) * 9) / 5 + 32).toFixed(0) + "°F"
     }`;
     seaLvlInfo.textContent = `${sea_level} m`;
+};
+
+export const displayWeekWeather = (data: WeatherData) => {
+    console.log(data);
+    if (weekWeather) {
+        weekWeather.innerHTML = "";
+    }
+    for (let i = 0; i < data.list.length; i++) {
+        if (i === 0) {
+            const li = document.createElement("li");
+            li.classList.add(`weather__week-forecast-list-item`);
+            li.classList.add(`weather__week-forecast-list-item_titles`);
+            li.innerHTML = `
+                <h4 class="weather__week-forecast-day-title">Day</h4>
+                <h4 class="weather__week-forecast-pressure-title">
+                    Pressure
+                </h4>
+                <h4 class="weather__week-forecast-humidity-title">
+                    Humidity
+                </h4>
+                <h4 class="weather__week-forecast-temperature-title">
+                    Temperature
+                </h4>
+            `;
+
+            weekWeather?.append(li);
+        } else {
+            if (i % 7 === 0) {
+                const li = document.createElement("li");
+                li.classList.add(`weather__week-forecast-list-item`);
+                const { pressure, humidity } = data.list[i].main;
+                const { temp, temp_max, temp_min } = data.list[i].main;
+                const { icon } = data.list[i].weather[0];
+                const dt = data.list[i].dt;
+
+                let date = new Date(dt * 1000);
+                let daysOfWeek = [
+                    "Sunday",
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday",
+                ];
+
+                let temperatureInCurrentScale: number = temp - 273;
+                let maxTemperatureScale: number = temp_max - 273;
+                let minTemperatureScale: number = temp_min - 273;
+
+                if (currentTemperatureScale === "fahrenheit") {
+                    temperatureInCurrentScale =
+                        (temperatureInCurrentScale * 9) / 5 + 32;
+                    maxTemperatureScale = (maxTemperatureScale * 9) / 5 + 32;
+                    minTemperatureScale = (minTemperatureScale * 9) / 5 + 32;
+                }
+
+                li.innerHTML = `
+                    <div class="weather__week-forecast-day-info">
+                        <p class="weather__week-forecast-day">${
+                            daysOfWeek[date.getDay()]
+                        }</p>
+                        <img
+                            src="https://openweathermap.org/img/wn/${icon}@4x.png"
+                            alt="weather image"
+                            class="weather__week-forecast-image"
+                        />
+                    </div>
+                    <p class="weather__week-forecast-humidity">${humidity}%</p>
+                    <p class="weather__week-forecast-pressure">${pressure} hPa</p>
+                    <p class="weather__week-forecast-temperature">${maxTemperatureScale.toFixed(
+                        0
+                    )}° ${minTemperatureScale.toFixed(0)}°</p>
+                `;
+
+                weekWeather?.append(li);
+            }
+        }
+    }
 };
